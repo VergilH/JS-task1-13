@@ -20,5 +20,44 @@
 	<button type="button" onclick="randomNumber()">开始闪</button>
 	<button type="button" onclick="resetBox()">停止闪</button>
 	<script src="task1.js"></script>
+	<p id="demo">点击按钮截取数组下标 1 到 2 的元素。</p>
+<button onclick="myFunction()">点我</button>
+<script>
+function myFunction(){
+	var box = document.getElementsByClassName("magicbox");
+	var i = 0;
+	var vage = ["0"];
+	while (i < boxLength) {
+		document.write(i + "<br>");
+		vage.push(i);
+		document.write(vage + "<br>");
+		i++;
+	}
+	var fruits = ["0","1", "2", "3", "4", "5"];
+	var num1 = Math.floor(Math.random()*fruits.length);
+	fruits.splice(num1,1);
+	document.write(fruits + "<br>");
+	var num2 = Math.floor(Math.random()*fruits.length);
+	fruits.splice(num2,1);
+	document.write(fruits + "<br>");
+	var num3 = Math.floor(Math.random()*fruits.length);
+	fruits.splice(num3,1);
+	document.write(fruits + "<br>");
+	var x=document.getElementById("demo");
+	//x.innerHTML=num;
+}
+</script>
+<button onclick="otherFunction()">点击这里</button>
+<p id="demon"></p>
+<script>
+function otherFunction(){
+	var x="",i=0;
+	while (i<boxLength){
+		x=x + "该数字为 " + i + "<br>";
+		i++;
+	}
+	document.getElementById("demon").innerHTML=x;
+}
+</script>
 </body>
 </html>
