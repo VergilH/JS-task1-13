@@ -7,10 +7,13 @@ button {
 	padding: 0;
 	width: 96%;
 	height: 60px;
-	border: none;
+	border: 2px solid #fbb17f;
 	border-radius: 7px;
-	background-color: #fbb17f;
+	background-color: #fff;
 	cursor: pointer;
+}
+button:hover {
+	background-color: #fbb17f;
 }
 .magicbox {
 	float: left;
