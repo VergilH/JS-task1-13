@@ -1,0 +1,25 @@
+header {
+  position: relative;
+  line-height: 44.5px;
+  align-items: center;
+  color: #fff; }
+
+.arrow_icon, .info_icon {
+  position: absolute;
+  top: 10px; }
+
+.arrow_icon {
+  left: 15px;
+  width: 16px;
+  height: 26px;
+  background: url(../images/assignment/assignment-arrow.png);
+  background-size: 100% 100%; }
+
+.info_icon {
+  right: 15px;
+  width: 26px;
+  height: 26px;
+  background: url(../images/assignment/assignment-info.png);
+  background-size: 100% 100%; }
+
+/*# sourceMappingURL=assignment.css.map */
