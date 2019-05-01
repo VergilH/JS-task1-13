@@ -16,5 +16,31 @@
 		<p class="font-lg">参数设置</p>
 		<button type="button" class="info_icon icon"></button>
 	</header>
+	<div class="content">
+		<div class="left distribution"><p class="vertical font-lg">玩</p><p class="vertical font-lg">家</p><p class="vertical font-lg">配</p><p class="vertical font-lg">比</p></div>
+		<div class="right setNumber">
+			<div class="displayNumber">
+				<div class="nothing left"><p>杀手</p><input type="text" readonly="readonly" id="killer"><p>人</p></div>
+				<div class="left person"><p>水民</p><input type="text" readonly="readonly" id="person"><p>人</p></div>
+			</div>
+			<div class="setting" onclick="dstributionNumber()"><p>点击设置</p></div>
+		</div>
+	</div>
+	<form action="" class="content">
+		<input type="text" id="people" placeholder="水民">
+		<input type="text" placeholder="杀手">
+	</form>
+	<div class="content selection-number">
+		<p>玩家人数</p><input class="number" id="display"><p>人</p>
+		<div></div>
+		<div class="content-bottom">
+			<input type="button" class="leftbtn" id="leftBtn" onclick="decreaseBtn()">
+			<input type="range" id="slider" max="18" min="4" step="1" value="4" name="slidebar" onchange="getNumber()">
+			<input type="button" class="rightbtn" id="rightBtn" onclick="increaseBtn()">
+		</div>
+	</div>
+	<button class="footer_btn" onclick="getNumber()">去发牌</button>
+	<script src="js/assignment.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </body>
 </html>

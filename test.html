@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title> 
+<script type="text/javascript" src='./js/jquery-1.8.3.min.js'></script> 
+<style type="text/css">
+#divtest{
+    width: 200px;
+    height: 200px;
+    background: red;
+    position: absolute;/*这很关键*/
+    left: 40%;
+    top:37%;
+}
+#divtest:active{
+    cursor: move;
+}
+</style>
+</head>
+<body>
+
+<div id="divtest">来，拖拽我啊～</div>
+
+<script type="text/javascript">
+var oDivTest = document.getElementById("divtest");
+darg(oDivTest);
+function darg(obj){
+    //鼠标按下 
+    obj.touchstart = function(ev){
+
+       //IE直接用event或者window.event得到事件本身,而在其他浏览器函数要获取到事件本身需要从函数中传入
+    　　var oevent = ev || event;
+
+    　　var distanceX = oevent.clientX - this.offsetLeft;
+    　　var distanceY = oevent.clientY - this.offsetTop;
+
+        //鼠标移动
+    　　document.touchmove = function(ev){
+    　　　　var oevent = ev || event;
+    　　　　obj.style.left = oevent.clientX - distanceX + 'px';
+    　　　　//gobj.style.top = oevent.clientY - distanceY + 'px'; 
+    　　};
+        //鼠标放开
+    　　document.touchend = function(){
+    　　　　document.onmousemove = null;
+    　　　　document.onmouseup = null;
+    　　};
+    };  
+}
+</script>
+</body>
+</html>
