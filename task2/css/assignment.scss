@@ -76,7 +76,7 @@ header {
 	input {
 		display: inline-block;
     	margin: 0 6px;
-    	width: 16px;
+    	width: 20px;
     	height: 12px;
     	border: none;
     	color: #a1a1a1;
@@ -120,7 +120,7 @@ header {
 }
 input {
 	position: relative;
-	bottom: 1px;
+	font-size: 16px;
 }
 .selection-number {
 	padding: 10px 15px;
@@ -141,9 +141,11 @@ input {
 }
 input[type=range] {
     -webkit-appearance: none;
+    display: inline-block;
     position: relative;
-    bottom: 2px;
-    margin: 0 10%;
+    left: 10%;
+    bottom: 4px;
+    margin: 0 auto;
     width: 80%;
     border-radius: 10px;
     &:before {
@@ -192,12 +194,12 @@ input[type=range]::-ms-fill-upper {
 	background-position: center;
 }
 .leftbtn {
-	left: 1%;
+	left: 0;
 	background-image: url(../images/assignment/decrease.png);
 	background-size: 12px 4px;
 }
 .rightbtn {
-	right: 1%;
+	right: 0;
 	background-image: url(../images/assignment/increase.png);
 	background-size: 12px 12px;
 }
@@ -236,8 +238,8 @@ form {
 
 .footer_btn {
 	width: 96%;
-	height: 30px;
-	margin: 10px 2%;
+	height: 36px;
+	margin: 8px 2%;
 	padding: 0;
 	border: none;
 	color: $white;

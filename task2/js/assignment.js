@@ -29,14 +29,20 @@ function dstributionNumber() {
 //滑动选择人数
 var needNumber = document.getElementById("slider");
 var display = document.getElementById("display");
-display.value=needNumber.value;
 function getNumber() {
 	if (needNumber.value>3&&needNumber.value<19) {
 		display.value=needNumber.value;
 		console.log(display.value);
 	}
 	else {
-		alert("undefind");
+		alert("游戏人数为4-18人，请重新输入");
+	}
+}
+window.onload = getNumber();
+
+function wrongNumber() {
+	if (display.value<4&&display.value>18) {
+		alert("游戏人数为4-18人，请重新输入");
 	}
 }
 //左右增减人数按钮
@@ -52,15 +58,3 @@ function decreaseBtn() {
 		display.value=needNumber.value;
 	}
 }
-
-var elem = document.querySelector('input[type="range"]');
-    var rangeValue = function(){
-        var newValue = elem.value;
-        var target = document.getElementById("slider");
-        target.innerHTML = newValue;
-    };
-    elem.addEventListener("input", rangeValue);
-
-    if (navigator.userAgent.toLowerCase().match(/chrome\/([\d.]+)/)) {
-      $range.style.background = 'linear-gradient(to right, #a100ff, #a100ff ' + percent + '%, #f0f0f0 ' + percent + '%)';
-    }
