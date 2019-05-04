@@ -32,17 +32,17 @@ var display = document.getElementById("display");
 function getNumber() {
 	if (needNumber.value>3&&needNumber.value<19) {
 		display.value=needNumber.value;
-		console.log(display.value);
-	}
-	else {
-		alert("游戏人数为4-18人，请重新输入");
 	}
 }
 window.onload = getNumber();
 
 function wrongNumber() {
-	if (display.value<4&&display.value>18) {
+	if (display.value<4||display.value>18) {
+		display.value = needNumber.value;
 		alert("游戏人数为4-18人，请重新输入");
+	}
+	else {
+		needNumber.value = display.value;
 	}
 }
 //左右增减人数按钮
@@ -56,5 +56,12 @@ function decreaseBtn() {
 	if (needNumber.value>3) {
 		needNumber.value--;
 		display.value=needNumber.value;
+	}
+}
+
+//检查人数分配
+function checkNumber() {
+	if (killer.value<1 || person.value<1) {
+		alert("请分配人数");
 	}
 }

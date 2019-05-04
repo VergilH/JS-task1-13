@@ -28,18 +28,18 @@
 	</div>
 	<form action="" class="content">
 		<input type="text" id="people" placeholder="水民">
-		<input type="text" placeholder="杀手">
+		<input type="text" id="" placeholder="杀手">
 	</form>
 	<div class="content selection-number">
-		<p>玩家人数</p><input type="text" class="number" id="display" value="" oninput = "wrongNumber(),value=value.replace(/[^\d]/g,'')"><p>人</p>
+		<p>玩家人数</p><input type="text" class="number" id="display" value="" onchange="wrongNumber(),dstributionNumber()" oninput = "value=value.replace(/[^\d]/g,'')"><p>人</p>
 		<div></div>
 		<div class="content-bottom">
-			<input type="button" class="leftbtn" id="leftBtn" onclick="decreaseBtn()">
-			<input type="range" id="slider" max="18" min="4" step="1" value="4" name="slidebar" oninput	="getNumber()">
-			<input type="button" class="rightbtn" id="rightBtn" onclick="increaseBtn()">
+			<input type="button" class="leftbtn" id="leftBtn" onclick="decreaseBtn(),dstributionNumber()">
+			<input type="range" id="slider" max="18" min="4" step="1" value="4" name="slidebar" oninput	="getNumber(),dstributionNumber()">
+			<input type="button" class="rightbtn" id="rightBtn" onclick="increaseBtn(),dstributionNumber()">
 		</div>
 	</div>
-	<button class="footer_btn font-lg" onclick="">去发牌</button>
+	<button class="footer_btn font-lg" onclick="checkNumber()">去发牌</button>
 	<script src="js/assignment.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </body>
