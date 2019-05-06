@@ -36,6 +36,7 @@ function getNumber() {
 }
 window.onload = getNumber();
 
+//人数错误提示
 function wrongNumber() {
 	if (display.value<4||display.value>18) {
 		display.value = needNumber.value;
@@ -65,3 +66,33 @@ function checkNumber() {
 		alert("请分配人数");
 	}
 }
+
+//创建人数数组
+var playerNumber = new Array();
+
+function getKiller(){
+	for (var k = 0;killer.value > k;k++) {
+		playerNumber.push("killer");
+		console.log(playerNumber);
+	}
+}
+
+function getPerson() {
+	for (var p = 0;person.value > p;p++) {
+		playerNumber.push("person");
+		console.log(playerNumber);
+	}
+}
+
+//数组乱序
+function shuffle(playerNumber) {
+    var i, t, temp;
+    for (i = playerNumber.length - 1; i > 0; i--) {
+        t = Math.floor(Math.random() * (i + 1));
+        temp = playerNumber[i];
+        playerNumber[i] = playerNumber[t];
+        playerNumber[t] = temp;
+    }
+    console.log(playerNumber);
+    return playerNumber;
+};
