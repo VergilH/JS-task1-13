@@ -1,10 +1,3 @@
-//获取词汇
-var people = document.getElementById("people");
-function getWords() {
-	var words = people.value;
-	console.log(words);
-	alert(words);
-}
 //自动分配人数
 var killer = document.getElementById("killer");
 var person = document.getElementById("person");
@@ -25,6 +18,21 @@ function dstributionNumber() {
 		killer.value=4;
 		person.value=needNumber.value-4;
 	}
+}
+//获取词汇
+var peopleWord = document.getElementById("peopleWord");
+var killerWord = document.getElementById("killerWord");
+function getPeopleWords() {
+	var pWord = peopleWord.value;
+	var pword = JSON.stringify(pWord);
+	sessionStorage.peopleWord = pword;
+	console.log(pword);
+}
+function getKillerWords() {
+	var kWord = killerWord.value;
+	var kword = JSON.stringify(kWord);
+	sessionStorage.killerWord = kword;
+	console.log(kword);
 }
 //滑动选择人数
 var needNumber = document.getElementById("slider");
@@ -94,5 +102,8 @@ function shuffle(playerNumber) {
         playerNumber[t] = temp;
     }
     console.log(playerNumber);
-    return playerNumber;
+    var str =JSON.stringify(playerNumber);
+    console.log(str);
+    sessionStorage.playerNumber = str;
+    return str;
 };
