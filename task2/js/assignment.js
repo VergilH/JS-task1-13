@@ -80,14 +80,14 @@ var playerNumber = new Array();
 
 function getKiller(){
 	for (var k = 0;killer.value > k;k++) {
-		playerNumber.push("killer");
+		playerNumber.push("杀手");
 		console.log(playerNumber);
 	}
 }
 
 function getPerson() {
 	for (var p = 0;person.value > p;p++) {
-		playerNumber.push("person");
+		playerNumber.push("水民");
 		console.log(playerNumber);
 	}
 }
