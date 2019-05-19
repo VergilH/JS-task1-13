@@ -36,7 +36,9 @@ main {
 	margin: 18px $width - 94 130px;
 	width: $width - 12;
 	text-align: center;
+	overflow: hidden;
 	.choise-person {
+		float: left;
 		margin: 10px $width / 24;
 		width: $width / 4;
 	}
@@ -66,7 +68,7 @@ main {
 }
 
 footer {
-	margin: 0 6%;
+	margin: 0 6% 30px;
 	border-top: 1px solid #fff;
 }
 #footer_btn {

@@ -12,16 +12,36 @@ console.log(peopleWord);
 var killer = sessionStorage.killerWord;
 var killerWord = JSON.parse(killer);
 console.log(killerWord);
-//
+//创建玩家选择框
 var main = document.getElementById('name');
-var div = document.createElement("div");
-var player;
-
-div.className = "choise-person";
-
+var player = playerNumber.length;
+console.log(player);
+console.log(playerNumber[0]);
 function addDiv() {
-	for (var i = 0;i < playerNumber;i++) {
+	for (var i = 0;i < player;i++) {
+		var div = document.createElement('div');
+		div.className = "choise-person";
 		main.appendChild(div);
 	}
 }
-widows.onload = addDiv();
+//创建玩家名称编号
+mainDiv = document.getElementsByClassName('choise-person');
+console.log(mainDiv);
+function addPlayer() {
+	for (var i = 0;i < player;i++) {
+		var number = document.createElement('div');
+		number.className = "number";
+		mainDiv[i].appendChild(number);
+		number.innerHTML = playerNumber[i];
+		var name = document.createElement('div');
+		name.className = "name";
+		mainDiv[i].appendChild(name);
+		name.innerHTML = i+1;
+	}
+}
+window.onload = addDiv(),addPlayer();
+
+/*1
+*23
+*45
+*/
