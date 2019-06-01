@@ -157,8 +157,29 @@ body {
 }
 
 header {
-  width: $width;
-  height: 44.5px;
+  position: relative;
+  line-height: 44.5px;
   text-align: center;
-  background: $blue;
+  color: $white;
+  background-color: $blue;
+}
+.arrow_icon,.shutdown_icon {
+  position: absolute;
+  top: 50%;
+}
+.arrow_icon {
+  left: 15px;
+  margin-top: -13px;
+  width: 16px;
+  height: 26px;
+  background: url(../images/assignment/assignment-arrow.png);
+  background-size: 100% 100%;
+}
+.shutdown_icon {
+  margin-top: -12px;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/shutdown.png);
+  background-size: 100% 100%;
 }

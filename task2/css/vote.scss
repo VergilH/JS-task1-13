@@ -64,9 +64,10 @@ header {
 main {
 	margin: 18px $width - 94 130px;
 	width: $width - 12;
+	text-align: center;
 	.choise-person {
-		margin-bottom: 10px;
-		//width: 68px;
+		float: left;
+		margin: 10px $width / 24;
 		width: $width / 4;
 		&:hover .icon{
 			visibility: visible;
@@ -96,6 +97,8 @@ main {
 		border-bottom: 2.5px solid $white;
 		box-sizing: border-box;
 		background: #83b09a;
+		color: $white;
+		font-size: 12px;
 	}
 	.choise-icon {
 		width: 15px;
@@ -103,16 +106,19 @@ main {
 	}
 	.icon {
 		visibility: hidden;
-		margin-top: 3%;
+		margin-top: 6px;
+		padding: 10px 0;
 		width: $width;
-		letter-spacing: -2.5px;
+		background: url(../images/knife.png) no-repeat center;
+		box-sizing: border-box;
+		background-size: 20px 20px;
 		button {
 			width: 22%;
 			margin: 0 1.5%;
 			padding: 11% 0;
 			//height: 15.2px;
 			box-sizing: border-box;
-			background-size: cover;
+			background-size: 20px 20px;
 		}
 	}
 	.icon-knife {

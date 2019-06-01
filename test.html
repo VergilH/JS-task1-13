@@ -1,53 +1,135 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title></title> 
-<script type="text/javascript" src='./js/jquery-1.8.3.min.js'></script> 
-<style type="text/css">
-#divtest{
-    width: 200px;
-    height: 200px;
-    background: red;
-    position: absolute;/*这很关键*/
-    left: 40%;
-    top:37%;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+#main {
+margin: 50px 0;
+text-align: center;
+color: aqua;
 }
-#divtest:active{
-    cursor: move;
+
+#box {
+display: flex;
+justify-content: space-evenly;
 }
+
+#box div {
+width: 100px;
+height: 40px;
+background: aqua;
+color: darkviolet;
+text-align: center;
+line-height: 40px;
+}
+
+
 </style>
+
+<script src="state-machine.js"></script>
 </head>
+
 <body>
+<h2 id="main">万年单身狗</h1>
+<div id="box">
+<div id="flowers">送花</div>
+<div id="confession">表白</div>
+<div id="propose">求婚</div>
+<div id="separate">分手</div>
+</div>
+<script>
+var main = document.getElementById("main"),
+flowers = document.getElementById("flowers"),
+confession = document.getElementById("confession"),
+propose = document.getElementById("propose"),
+separate = document.getElementById("separate");
+var fsm = new StateMachine({
 
-<div id="divtest">来，拖拽我啊～</div>
+init: 'dog',
 
-<script type="text/javascript">
-var oDivTest = document.getElementById("divtest");
-darg(oDivTest);
-function darg(obj){
-    //鼠标按下 
-    obj.touchstart = function(ev){
+transitions: [
 
-       //IE直接用event或者window.event得到事件本身,而在其他浏览器函数要获取到事件本身需要从函数中传入
-    　　var oevent = ev || event;
+{ name: 'flowers',  from: 'dog',  to: 'love' },
 
-    　　var distanceX = oevent.clientX - this.offsetLeft;
-    　　var distanceY = oevent.clientY - this.offsetTop;
+{ name: 'confession', from: ['dog', 'love'], to: 'together'    },
 
-        //鼠标移动
-    　　document.touchmove = function(ev){
-    　　　　var oevent = ev || event;
-    　　　　obj.style.left = oevent.clientX - distanceX + 'px';
-    　　　　//gobj.style.top = oevent.clientY - distanceY + 'px'; 
-    　　};
-        //鼠标放开
-    　　document.touchend = function(){
-    　　　　document.onmousemove = null;
-    　　　　document.onmouseup = null;
-    　　};
-    };  
+{ name: 'propose',  from: ['love','together'],    to: 'marry' },
+
+{ name: 'separate', from: '*', to: 'dog'  }
+
+],
+
+methods: {
+onEnterDog: function() {main.innerHTML = '万年单生狗';},
+onEnterLove: function() {main.innerHTML = '友人已满，恋人未达';},
+onEnterTogether: function() {main.innerHTML = '亲密恋人';},
+onEnterMarry: function() {main.innerHTML = '结婚';}
+}
+
+})
+flowers.onclick = function() {
+switch(fsm.state) {
+case "dog":
+fsm.flowers();
+break;
+case "love":
+fsm.confession();
+break;
+case "together":
+fsm.propose();
+break;
+default:
+alert("已经结婚就不要在送花了");
+}
+console.log(fsm.state);
+}
+
+confession.onclick = function() {
+switch(fsm.state) {
+case "dog":
+case "love":
+fsm.confession();
+break;
+case "marry":
+alert("已经结婚就不要秀恩爱了");
+break;
+default:
+alert("尝试着送花或者求婚吧");
+}
+console.log(fsm.state);
+}
+
+propose.onclick = function() {
+switch(fsm.state) {
+case "dog":
+alert("先送花建立友情吧");
+break;
+case "love":
+case "together":
+fsm.propose();
+break;
+default:
+alert("不要在求婚了");
+}
+console.log(fsm.state);
+}
+
+separate.onclick = function() {
+switch(fsm.state) {
+case "dog":
+alert("(o゜▽゜)o☆单身狗不需要分手");
+break;
+default:
+fsm.separate
+();
+}
+console.log(fsm.state);
 }
 </script>
 </body>
+
 </html>

@@ -36,11 +36,13 @@ function addPlayer() {
 		var name = document.createElement('div');
 		name.className = "name";
 		mainDiv[i].appendChild(name);
-		name.innerHTML = i+1;
+		name.innerHTML = i+1 + "号";
 	}
 }
 window.onload = addDiv(),addPlayer();
-
+function jump() {
+	window.location.href="daily.html";
+}
 /*1
 *23
 *45
