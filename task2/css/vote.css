@@ -134,7 +134,7 @@ body {
   color: #fff;
   letter-spacing: .5px; }
 
-header .icon {
+header .h-icon {
   position: absolute;
   width: 22px;
   height: 22px; }
@@ -202,6 +202,8 @@ main {
     background: #83b09a;
     color: #fff;
     font-size: 12px; }
+  main .dead {
+    background-color: #83b09a !important; }
   main .choise-icon {
     width: 15px;
     height: 15px; }
@@ -212,7 +214,8 @@ main {
     width: 100%;
     background: url(../images/knife.png) no-repeat center;
     box-sizing: border-box;
-    background-size: 20px 20px; }
+    background-size: 20px 20px;
+    cursor: pointer; }
     main .icon button {
       width: 22%;
       margin: 0 1.5%;

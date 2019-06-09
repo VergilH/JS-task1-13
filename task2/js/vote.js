@@ -12,65 +12,40 @@ function addChoiseButton() {
 		mainDiv[i].appendChild(icon);
 	}
 }
-window.onload = addChoiseButton();
+window.onload = addChoiseButton(sessionStorage.Arr);
 
-function jump() {
-	window.location.href="daily.html";
+//deadPerson = sessionStorage.Arr;
+//var dying = JSON.parse(deadPerson);
+if (sessionStorage.getItem("Arr") != null) {
+	deadPerson = sessionStorage.Arr;
+	dying = JSON.parse(deadPerson);
+	dead = [];
+	dead = dead.concat(dying);
+	for (var i = 0;i < dying.length; i++) {
+		$(".number:eq("+ dying[i] +")").addClass("dead");
+	}
+}
+else {
+	alert("nothing");
 }
 
-var fsm = StateMachine(	{
-	init:newState,
-    transitions: [
-        {name:"kill",from:"start",to:"killed"},
-        {name:"tell",from:"killed",to:"told"},
-        {name:"speak",from:"told",to:"spoke"},
-        {name:"vote",from:"spoke",to:"voted"}
-    ],
-
-    methods: {
-        onKill:function () {
-            $(".kill").css({backgroundColor:"#2375af"});
-            $(".triLeft1").css({borderColor:"transparent #2375af transparent transparent"});
-            // $(".kill").addClass("over1");
-            // $(".triLeft1").addClass("over2");//思路二
-        },
-        onTell:function () {
-            $(".tell").css({backgroundColor:"#2375af"});
-            $(".triLeft2").css({borderColor:"transparent #2375af transparent transparent"});
-            // $(".tell").addClass("over1");
-            // $(".triLeft2").addClass("over2");//思路二
-        },
-        onSpeak:function () {
-            $(".speak").css({backgroundColor:"#2375af"});
-            $(".triLeft3").css({borderColor:"transparent #2375af transparent transparent"});
-        },
-        onVote:function () {
-            $(".vote").css({backgroundColor:"#2375af"});
-            $(".triLeft4").css({borderColor:"transparent #2375af transparent transparent"});
-        }
-    }
-
+console.log();
+console.log(dead);
+//选择目标
+$(".icon").click(function(){
+	window.icon = $('.icon').index(this);
 });
-
-switch (fsm.state){
-    case "killed" :
-        fsm.onKill();
-        aboutKill();
-        break;
-    case "told":
-        fsm.onKill();
-        fsm.onSpeak();
-        break;
-    case "spoke":
-        fsm.onKill();
-        fsm.onTell();
-        fsm.onSpeak();
-        break;
-    case "voted":
-        fsm.onKill();
-        fsm.onTell();
-        fsm.onSpeak();
-        fsm.onVote();
-        abuotVote ();
-        aboutKill();
-}
+//判断是否选取目标
+$("#footerBtn").click(function(){
+	if (typeof(icon) == "undefined") {
+		alert("先选择某人");
+	} 
+	else {
+		console.log(icon);
+		$(".number:eq("+ icon +")").addClass("dead");
+		dead.push(icon);
+		window.deadPerson = JSON.stringify(dead);
+		sessionStorage.Arr = deadPerson;
+		window.location.href="daily.html";
+	}
+});

@@ -13,9 +13,9 @@
 </head>
 <body>
 	<header class="setcenter">
-		<button type="button" class="hbg-icon icon"></button>
+		<button type="button" class="hbg-icon h-icon"></button>
 		<p class="font-lg">投票</p>
-		<button type="button" class="shutdown-icon icon"></button>
+		<button type="button" class="shutdown-icon h-icon"></button>
 	</header>
 
 	<div class="summary setcenter">
@@ -31,14 +31,13 @@
 	<p class="tip font-12">点击得票数最多人的头像</p>
 
 	<main id="name">
-		<div class="clearfloat"></div>
 	</main>
 
 	<footer>
-		<button type="button" class="btn white-text font-20" onclick="jump()">投死</button>
+		<button type="button" class="btn white-text font-20" id="footerBtn">投死</button>
 	</footer>
+	<script src="js/state-machine.js"></script>
 	<script src="js/judge.js"></script>
 	<script src="js/vote.js"></script>
-	<script src="js/state-machine.js"></script>
 </body>
 </html>

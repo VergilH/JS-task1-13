@@ -1,55 +1,123 @@
+str = sessionStorage.playerNumber;
+console.log(str);
+playerNumber = JSON.parse(str);
 
-function jump() {
-	window.location.href="vote.html";
-};
 var tip = document.getElementsByClassName('tip');
 var tipArrow = document.getElementsByClassName('tip_arrow');
 //遗言
-function lastWords() {
-	var blue = getComputedStyle(tip[0],null).backgroundColor;
-	console.log(blue);
-	if (blue=="rgb(41, 189, 224)") {
-		alert("杀手选择被害人");
-	}
-	else{
-		confirm("发表遗言");
-		tip[1].style.backgroundColor = '#83b09a';
-		tipArrow[1].style.borderLeftColor = '#83b09a';
-	}
-};
-function rec(){
-	var blue = getComputedStyle(tip[1],null).backgroundColor;
-	console.log(blue);
-	if (blue=="rgb(41, 189, 224)") {
-		alert("先发表遗言");
-	}
-	else{
-		confirm("玩家发言");
-		tip[2].style.backgroundColor = '#83b09a';
-		tipArrow[2].style.borderLeftColor = '#83b09a';
-	}
-};
-//jQuery
-$(document).ready(function(){
-	$("#murder").click(function(){
-		$("#murder").css("background-color","#83b09a");
-		$(".tip_arrow:first").css("border-left-color","#83b09a");
-	});
-});
-
+//window.localStorage.getItem(fsm,'state');
+//console.log(window.localStorage);
+var fre = sessionStorage.getItem('step');//开始状态
+console.log(fre);
+if (fre=="step1") {
+	var data = 'step1';
+	deadPerson = sessionStorage.Arr;
+	window.dead = JSON.parse(deadPerson);
+	console.log(dead[0]);
+	window.deadMan = dead[0] + 1;
+	console.log(deadMan);
+	console.log(playerNumber[dead[0]]);
+}
+else {
+	var data = 'start';
+}
+console.log(data);
 var fsm = new StateMachine({
-	init: 'start',
+	init: data,
 	transitions: [
-		{name:'step1', from:'start', to:'step2'},
-		{name:'step2', from:'step1', to:'step3'},
-		{name:'step3', from:'step2', to:'step4'},
-		{name:'setp4', from:'step3', to:'end'}
+		{name:'murder', from:'start', to:'step1'},
+		{name:'lastWord', from:'step1', to:'step2'},
+		{name:'discuss', from:'step2', to:'step3'},
+		{name:'vote', from:'step3', to:'step4'}
 	],
 	methods: {
-		onStep1:     function() { console.log('I melted')    },
-      	onStep2:   function() { console.log('I froze')     },
-      	onStep3: function() { console.log('I vaporized') },
-      	onStep4: function() { console.log('I condensed') }
+		onEnterStep1: function() {
+			//localStorage.setItem(fsm,'state');
+			//console.log(window.localStorage);
+			sessionStorage.setItem('step','step1');
+			$("#murder").css("background-color","#83b09a");
+			$(".tip_arrow:first").css("border-left-color","#83b09a");
+			$("#murder").after("<p class=deadInfo></p>")
+			$("p:eq(3)").html(deadMan + "号被杀手杀死，真实身份是" + playerNumber[dead[0]]);
+			$(".sun").css("top","106px");
+		},
+		onEnterStep2: function() {
+			$("#lastWord").css("background-color","#83b09a");
+			$("#lastWord .tip_arrow").css("border-left-color","#83b09a");
+		},
+		onEnterStep3: function() {
+			$("#discuss").css("background-color","#83b09a");
+			$("#discuss .tip_arrow").css("border-left-color","#83b09a");
+		},
+		onEnterStep4: function() {
+			$("#vote").css("background-color","#83b09a");
+			$("#vote .tip_arrow").css("border-left-color","#83b09a");
+			window.sessionStorage.removeItem('step');
+		}
 	}
 });
+murder.onclick = function() {
+	switch(fsm.state) {
+		case "start":
+		window.location.href="vote.html";
+		fsm.murder();
+		break;
+		default:
+		alert("已经杀过人了,亡灵开始发表遗言");
+	}
+	console.log(fsm.state);
+}
+lastWord.onclick = function() {
+	switch(fsm.state) {
+		case "start":
+		alert("杀手还未杀人")
+		break;
+		case "step1":
+		fsm.lastWord();
+		break;
+		default:
+		alert("已经发表遗言了，开始讨论吧")
+	}
+	console.log(fsm.state);
+}
+discuss.onclick = function() {
+	switch(fsm.state) {
+		case "start":
+		alert("杀手还未杀人")
+		break;
+		case "step1":
+		alert("亡灵还未发表遗言")
+		break;
+		case "step2":
+		fsm.discuss();
+		break;
+		default:
+		alert("已经讨论过了，开始投票吧")
+	}
+	console.log(fsm.state);
+}
+vote.onclick = function() {
+	switch(fsm.state) {
+		case "start":
+		alert("杀手还未杀人")
+		break;
+		case "step1":
+		alert("亡灵还未发表遗言")
+		break;
+		case "step2":
+		alert("玩家还未讨论")
+		break;
+		case "step3":
+		alert("开始进行投票")
+		fsm.vote();
+		window.location.href="vote.html";
+		break;
+		default:
+		alert("???")
+	}
+	console.log(fsm.state);
+}
+
+
+
 console.log(fsm);
