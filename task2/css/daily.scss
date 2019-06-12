@@ -16,6 +16,7 @@ main {
 	box-sizing: border-box;
 	background-color: #fff;
 	font-weight: 600;
+	font-size: 16px;
 	color: $blue;
 }
 .down_arrow {
@@ -48,8 +49,10 @@ main {
 	background-color: $blue;
 }
 .tips {
-	margin: 15px 0 0 4%;
+	float: left;
+	padding: 15px 0 15px 4%;
 	width: 80%;
+	border-left: 1px solid #c9c9c9;
 }
 .tip_arrow {
 	position: absolute;
@@ -68,10 +71,10 @@ main {
     transform: rotate(180deg);
 }
 .sideline {
+	float: left;
 	position: relative;
 	width: 10%;
-	padding: 100% 0 0;
-	border-right: 1px solid #c9c9c9;
+	padding: 1% 0 0;
 	box-sizing: border-box;
 }
 .moon,.sun {
@@ -100,4 +103,5 @@ main {
 }
 .deadInfo {
 	font-size: 14px;
+	text-align: left;
 }

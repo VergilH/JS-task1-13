@@ -2,122 +2,28 @@ str = sessionStorage.playerNumber;
 console.log(str);
 playerNumber = JSON.parse(str);
 
+
+deadPerson = sessionStorage.Arr;
+var dead = JSON.parse(deadPerson);
+console.log(dead.length);
+
+
+//动态日期
+$(document).ready(function(){
+	for (var i = -1; i < dead.length; i=i+2) {
+		$("main").append("<div class=date>第一天<div class=down_arrow></div></div>");
+		$("main").append("<div class=content><div class=sideline><div class=moon></div><div class=sun></div></div><div class=tips><div class=tip id=murder><div class=tip_arrow></div><p>杀手杀人</p></div><div class=tip id=lastWord><div class=tip_arrow></div><p>亡灵发表遗言</p></div><div class=tip id=discuss><div class=tip_arrow></div><p>玩家依次发言</p></div><div class=tip id=vote><div class=tip_arrow></div><p>全民投票</p></div></div></div>")
+	}
+});
+
 var tip = document.getElementsByClassName('tip');
 var tipArrow = document.getElementsByClassName('tip_arrow');
 //遗言
 //window.localStorage.getItem(fsm,'state');
 //console.log(window.localStorage);
-var fre = sessionStorage.getItem('step');//开始状态
-console.log(fre);
-if (fre=="step1") {
-	var data = 'step1';
-	deadPerson = sessionStorage.Arr;
-	window.dead = JSON.parse(deadPerson);
-	console.log(dead[0]);
-	window.deadMan = dead[0] + 1;
-	console.log(deadMan);
-	console.log(playerNumber[dead[0]]);
-}
-else {
-	var data = 'start';
-}
-console.log(data);
-var fsm = new StateMachine({
-	init: data,
-	transitions: [
-		{name:'murder', from:'start', to:'step1'},
-		{name:'lastWord', from:'step1', to:'step2'},
-		{name:'discuss', from:'step2', to:'step3'},
-		{name:'vote', from:'step3', to:'step4'}
-	],
-	methods: {
-		onEnterStep1: function() {
-			//localStorage.setItem(fsm,'state');
-			//console.log(window.localStorage);
-			sessionStorage.setItem('step','step1');
-			$("#murder").css("background-color","#83b09a");
-			$(".tip_arrow:first").css("border-left-color","#83b09a");
-			$("#murder").after("<p class=deadInfo></p>")
-			$("p:eq(3)").html(deadMan + "号被杀手杀死，真实身份是" + playerNumber[dead[0]]);
-			$(".sun").css("top","106px");
-		},
-		onEnterStep2: function() {
-			$("#lastWord").css("background-color","#83b09a");
-			$("#lastWord .tip_arrow").css("border-left-color","#83b09a");
-		},
-		onEnterStep3: function() {
-			$("#discuss").css("background-color","#83b09a");
-			$("#discuss .tip_arrow").css("border-left-color","#83b09a");
-		},
-		onEnterStep4: function() {
-			$("#vote").css("background-color","#83b09a");
-			$("#vote .tip_arrow").css("border-left-color","#83b09a");
-			window.sessionStorage.removeItem('step');
-		}
-	}
-});
-murder.onclick = function() {
-	switch(fsm.state) {
-		case "start":
-		window.location.href="vote.html";
-		fsm.murder();
-		break;
-		default:
-		alert("已经杀过人了,亡灵开始发表遗言");
-	}
-	console.log(fsm.state);
-}
-lastWord.onclick = function() {
-	switch(fsm.state) {
-		case "start":
-		alert("杀手还未杀人")
-		break;
-		case "step1":
-		fsm.lastWord();
-		break;
-		default:
-		alert("已经发表遗言了，开始讨论吧")
-	}
-	console.log(fsm.state);
-}
-discuss.onclick = function() {
-	switch(fsm.state) {
-		case "start":
-		alert("杀手还未杀人")
-		break;
-		case "step1":
-		alert("亡灵还未发表遗言")
-		break;
-		case "step2":
-		fsm.discuss();
-		break;
-		default:
-		alert("已经讨论过了，开始投票吧")
-	}
-	console.log(fsm.state);
-}
-vote.onclick = function() {
-	switch(fsm.state) {
-		case "start":
-		alert("杀手还未杀人")
-		break;
-		case "step1":
-		alert("亡灵还未发表遗言")
-		break;
-		case "step2":
-		alert("玩家还未讨论")
-		break;
-		case "step3":
-		alert("开始进行投票")
-		fsm.vote();
-		window.location.href="vote.html";
-		break;
-		default:
-		alert("???")
-	}
-	console.log(fsm.state);
-}
 
-
-
-console.log(fsm);
+var head= document.getElementsByTagName('head')[0]; 
+var script= document.createElement('script'); 
+script.type= 'text/javascript'; 
+script.src= 'js/new-state-machine.js';
+head.appendChild(script); 

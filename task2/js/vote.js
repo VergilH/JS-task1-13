@@ -14,15 +14,13 @@ function addChoiseButton() {
 }
 window.onload = addChoiseButton(sessionStorage.Arr);
 
+deadPerson = sessionStorage.Arr;
+dead = JSON.parse(deadPerson);
 //deadPerson = sessionStorage.Arr;
 //var dying = JSON.parse(deadPerson);
 if (sessionStorage.getItem("Arr") != null) {
-	deadPerson = sessionStorage.Arr;
-	dying = JSON.parse(deadPerson);
-	dead = [];
-	dead = dead.concat(dying);
-	for (var i = 0;i < dying.length; i++) {
-		$(".number:eq("+ dying[i] +")").addClass("dead");
+	for (var i = 0;i < dead.length; i++) {
+		$(".number:eq("+ dead[i] +")").addClass("dead");
 	}
 }
 else {
@@ -30,7 +28,7 @@ else {
 }
 
 console.log();
-console.log(dead);
+console.log();
 //选择目标
 $(".icon").click(function(){
 	window.icon = $('.icon').index(this);

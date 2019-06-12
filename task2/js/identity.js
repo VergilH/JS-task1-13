@@ -12,6 +12,9 @@ console.log(peopleWord);
 var killer = sessionStorage.killerWord;
 var killerWord = JSON.parse(killer);
 console.log(killerWord);
+var dead = [];//死者
+window.deadPerson = JSON.stringify(dead);
+sessionStorage.Arr = deadPerson;
 
 //window.onload = getPlayer();
 var imgCheck = document.getElementById("img-check");
