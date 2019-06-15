@@ -175,7 +175,8 @@ header .shutdown-icon {
 main {
   margin: 18px 6% 130px;
   width: 88%;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
   main .choise-person {
     float: left;
     margin: 10px 4.1666666667%;

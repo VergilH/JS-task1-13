@@ -1,10 +1,27 @@
 var deadPerson = sessionStorage.Arr;
 var dead = JSON.parse(deadPerson);
-console.log(dead.length);
 var fre = sessionStorage.getItem('step');//开始状态
-console.log(fre);
 
-var murder = document.getElementById("murder");
+var round = 0;//游戏回合数
+var murderI = round + 0;
+var lastWordI = round + 1;
+var discussI = round + 2;
+var voteI = round + 3;
+var killed = 0;
+$(document).ready(function(){
+	for (var i = 1; i < dead.length; i=i+2) {
+		round = round + 4;
+		murderI = round + 0;
+		lastWordI = round + 1;
+		discussI = round + 2;
+		voteI = round + 3;
+		killed = killed + 2;
+	}
+});
+var murder = document.getElementsByClassName("tip")[murderI];
+var lastWord = document.getElementsByClassName("tip")[lastWordI];
+var discuss = document.getElementsByClassName("tip")[discussI];
+var vote = document.getElementsByClassName("tip")[voteI];
 
 if (fre=="step1") {
 	var data = 'step1';
@@ -26,27 +43,27 @@ var fsm = new StateMachine({
 			//localStorage.setItem(fsm,'state');
 			//console.log(window.localStorage);
 			sessionStorage.setItem('step','step1');
-			$("#murder").css("background-color","#83b09a");
-			$(".tip_arrow:first").css("border-left-color","#83b09a");
-			console.log(dead[0]);
-			window.deadMan = dead[0] + 1;
-			console.log(deadMan);
-			console.log(playerNumber[dead[0]]);
-			$("#murder").after("<p class=deadInfo></p>");
-			$("p:eq(3)").html(deadMan + "号被杀手杀死，真实身份是" + playerNumber[dead[0]]);
+			$(".tip:eq("+ murderI +")").css("background-color","#83b09a");
+			$(".tip:eq("+ murderI +") .tip_arrow").css("border-left-color","#83b09a");
+			$("#murder").on('click','.deadInfo',function(){
+				$(".deadInfo").css("display","block");
+			});
+			$(".deadInfo").css("display","block");
+			window.deadMan = dead[killed] + 1;
+			$(".deadInfo").html(deadMan + "号被杀手杀死，真实身份是" + playerNumber[dead[killed]]);
 			$(".sun").css("top","106px");
 		},
 		onEnterStep2: function() {
-			$("#lastWord").css("background-color","#83b09a");
-			$("#lastWord .tip_arrow").css("border-left-color","#83b09a");
+			$(".tip:eq("+ lastWordI +")").css("background-color","#83b09a");
+			$(".tip:eq("+ lastWordI +") .tip_arrow").css("border-left-color","#83b09a");
 		},
 		onEnterStep3: function() {
-			$("#discuss").css("background-color","#83b09a");
-			$("#discuss .tip_arrow").css("border-left-color","#83b09a");
+			$(".tip:eq("+ discussI +")").css("background-color","#83b09a");
+			$(".tip:eq("+ discussI +") .tip_arrow").css("border-left-color","#83b09a");
 		},
 		onEnterStep4: function() {
-			$("#vote").css("background-color","#83b09a");
-			$("#vote .tip_arrow").css("border-left-color","#83b09a");
+			$(".tip:eq("+ voteI +")").css("background-color","#83b09a");
+			$(".tip:eq("+ voteI +") .tip_arrow").css("border-left-color","#83b09a");
 			window.sessionStorage.removeItem('step');
 		}
 	}
@@ -54,7 +71,7 @@ var fsm = new StateMachine({
 murder.onclick = function() {
 	switch(fsm.state) {
 		case "start":
-		window.location.href="vote.html";
+		window.location.href="killing.html";
 		fsm.murder();
 		break;
 		default:

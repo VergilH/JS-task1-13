@@ -1,6 +1,10 @@
 //自动分配人数
 var killer = document.getElementById("killer");
 var person = document.getElementById("person");
+$(".footer_btn").click(function(){//获取水民和杀手人数	
+	window.sessionStorage.setItem("killer",killer.value);
+	window.sessionStorage.setItem("person",person.value);
+});
 function dstributionNumber() {
 	if (needNumber.value<7) {
 		killer.value=1;
@@ -22,17 +26,21 @@ function dstributionNumber() {
 //获取词汇
 var peopleWord = document.getElementById("peopleWord");
 var killerWord = document.getElementById("killerWord");
+window.pWord = peopleWord.value;
+window.kWord = killerWord.value;
 function getPeopleWords() {
-	var pWord = peopleWord.value;
+	window.pWord = peopleWord.value;
 	var pword = JSON.stringify(pWord);
 	sessionStorage.peopleWord = pword;
 	console.log(pword);
+	return pWord;
 }
 function getKillerWords() {
-	var kWord = killerWord.value;
+	window.kWord = killerWord.value;
 	var kword = JSON.stringify(kWord);
 	sessionStorage.killerWord = kword;
 	console.log(kword);
+	return kWord;
 }
 //滑动选择人数
 var needNumber = document.getElementById("slider");
@@ -68,29 +76,37 @@ function decreaseBtn() {
 	}
 }
 
+function timeOut() {
+	setTimeout("checkNumber()",10);
+}
 //检查人数分配
 function checkNumber() {
 	if (killer.value<1 || person.value<1) {
 		alert("请分配人数");
 	}
+	else if (playerNumber.length == 0) {
+		alert("请分配人数");
+	}
+	else if (pWord == null || pWord == undefined || pWord == ''||kWord == null || kWord == undefined || kWord == '') {
+		alert("请设置词汇");
+	}
+	else {
+		window.location.href="identity.html";
+	}
 }
-
 //创建人数数组
 var playerNumber = new Array();
 
-function getKiller(){
+function getPlayer(){
+	playerNumber = new Array();
 	for (var k = 0;killer.value > k;k++) {
 		playerNumber.push("杀手");
-		console.log(playerNumber);
 	}
-}
-
-function getPerson() {
 	for (var p = 0;person.value > p;p++) {
 		playerNumber.push("水民");
-		console.log(playerNumber);
 	}
-}
+	return playerNumber;
+};
 
 //数组乱序
 function shuffle(playerNumber) {

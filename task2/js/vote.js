@@ -14,21 +14,43 @@ function addChoiseButton() {
 }
 window.onload = addChoiseButton(sessionStorage.Arr);
 
+var killer = sessionStorage.getItem("killer");
+var person = sessionStorage.getItem("person");
+
+$(document).ready(function(){
+	$(".number").addClass("alive");
+});
+
 deadPerson = sessionStorage.Arr;
 dead = JSON.parse(deadPerson);
-//deadPerson = sessionStorage.Arr;
-//var dying = JSON.parse(deadPerson);
-if (sessionStorage.getItem("Arr") != null) {
-	for (var i = 0;i < dead.length; i++) {
-		$(".number:eq("+ dead[i] +")").addClass("dead");
-	}
-}
-else {
-	alert("nothing");
-}
 
-console.log();
-console.log();
+$(document).ready(function(){//分辨生死
+	if (sessionStorage.getItem("Arr") != null) {
+		for (var i = 0;i < dead.length; i++) {
+			$(".number:eq("+ dead[i] +")").addClass("dead");
+			$(".number:eq("+ dead[i] +")").removeClass("alive");
+		}
+	}
+	else {
+		alert("nothing");
+	}
+});
+
+var personAlive = [];
+var killerAlive = [];
+$(function(){//找出存活人数
+	stillAlive = document.getElementsByClassName("alive");
+	for (var i = 0; i < stillAlive.length; i++) {
+		console.log(stillAlive[i].innerHTML);
+		if (stillAlive[i].innerHTML == "水民") {
+			personAlive.push(i);
+		} 
+		else {
+			killerAlive.push(i);
+		}
+	}
+});
+
 //选择目标
 $(".icon").click(function(){
 	window.icon = $('.icon').index(this);
@@ -37,9 +59,11 @@ $(".icon").click(function(){
 $("#footerBtn").click(function(){
 	if (typeof(icon) == "undefined") {
 		alert("先选择某人");
-	} 
+	}
+	else if (killerAlive.length==0 || personAlive.length==killerAlive.length) {
+		window.location.href="result.html";
+	}
 	else {
-		console.log(icon);
 		$(".number:eq("+ icon +")").addClass("dead");
 		dead.push(icon);
 		window.deadPerson = JSON.stringify(dead);

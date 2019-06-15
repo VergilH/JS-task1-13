@@ -61,9 +61,11 @@ content {
 	color: #a6a6a6;
 	box-sizing: border-box;
 	.deepblack {
+		float: left;
 		color: #515151;
 	}
 	.frenchgrey {
+		float: right;
 		font-size: $font-size - 4;
 		color: #d6d6d6;
 	}
@@ -72,7 +74,13 @@ content {
 	}
 	.content-middle {
 		margin-top: 8px;
+		.tag {
+			font-size: 14px;
+		}
 	}
+}
+#content {
+	margin-bottom: 82px;
 }
 
 .footer_margin {

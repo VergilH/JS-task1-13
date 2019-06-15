@@ -31,6 +31,7 @@ main {
     transform: rotate(45deg);
 }
 .content {
+	display: none;
 	position: relative;
 	width: 100%;
 	border: 1px solid #c9c9c9;
@@ -102,6 +103,8 @@ main {
   	vertical-align: middle;
 }
 .deadInfo {
+	display: none;
+	margin-left: 20px;
 	font-size: 14px;
 	text-align: left;
 }

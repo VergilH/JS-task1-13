@@ -225,6 +225,8 @@ main {
   vertical-align: middle; }
 
 .deadInfo {
+  display: none;
+  margin-left: 20px;
   font-size: 14px;
   text-align: left; }
 
