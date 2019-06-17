@@ -5,6 +5,10 @@ $(".footer_btn").click(function(){//获取水民和杀手人数
 	window.sessionStorage.setItem("killer",killer.value);
 	window.sessionStorage.setItem("person",person.value);
 });
+var aliveNum = [];
+window.survivor = JSON.stringify(aliveNum);
+sessionStorage.alive = survivor;
+
 function dstributionNumber() {
 	if (needNumber.value<7) {
 		killer.value=1;

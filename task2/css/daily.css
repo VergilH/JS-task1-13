@@ -127,7 +127,7 @@ header {
   text-align: center; }
 
 main {
-  margin: 20px 1%;
+  margin: 20px 1% 100px;
   width: 98%; }
 
 .date {
@@ -154,6 +154,7 @@ main {
   transform: rotate(45deg); }
 
 .content {
+  display: none;
   position: relative;
   width: 100%;
   border: 1px solid #c9c9c9;
@@ -229,5 +230,21 @@ main {
   margin-left: 20px;
   font-size: 14px;
   text-align: left; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(41, 189, 224, 0.5); }
+  footer .btn {
+    margin: 20px 4%;
+    width: 42%;
+    height: 42px;
+    border-radius: 5px; }
+  footer .bg-red {
+    line-height: 42px;
+    background-color: #fbb435; }
+  footer .bg-orange {
+    background-color: #fbb435; }
 
 /*# sourceMappingURL=daily.css.map */

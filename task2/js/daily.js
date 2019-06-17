@@ -23,6 +23,48 @@ var tipArrow = document.getElementsByClassName('tip_arrow');
 //window.localStorage.getItem(fsm,'state');
 //console.log(window.localStorage);
 
+$(document).ready(function(){
+	if (dead.length == 0) {
+		return;
+	}
+	else {
+		survivor = sessionStorage.alive;
+		window.aliveNum = JSON.parse(survivor);
+		console.log(aliveNum);
+	}
+	window.killer = 0;
+	window.person = 0;
+	for (var i = 0; i < aliveNum.length; i++) {
+		if (aliveNum[i] == "杀手") {
+			killer++;
+		} 
+		else if (aliveNum[i] == "水民") {
+			person++;
+		}
+	}
+	console.log(person);
+	console.log(killer);
+	if (killer == 0||person == killer) {
+		alert("游戏结束");
+		window.location.href="result.html";
+	}
+});
+
+$("#judge").click(function(){
+	window.location.href="judge.html";
+});
+$("#btn_restart").click(function() {
+	var c = confirm("结束本次游戏？");
+	if (c == true) {
+		sessionStorage.clear();
+		window.location.href="index.html";
+	} 
+	else {
+		return;
+	}
+});
+
+
 var head= document.getElementsByTagName('head')[0]; 
 var script= document.createElement('script'); 
 script.type= 'text/javascript'; 

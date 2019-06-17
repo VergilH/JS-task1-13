@@ -43,6 +43,21 @@ window.onload = addDiv(),addPlayer();
 function jump() {
 	window.location.href="daily.html";
 }
+
+deadPerson = sessionStorage.Arr;
+dead = JSON.parse(deadPerson);
+
+$(document).ready(function(){//分辨生死
+	if (sessionStorage.getItem("Arr") != null) {
+		for (var i = 0;i < dead.length; i++) {
+			$(".number:eq("+ dead[i] +")").addClass("dead");
+			$(".number:eq("+ dead[i] +")").removeClass("alive");
+		}
+	}
+	else {
+		alert("nothing");
+	}
+});
 /*1
 *23
 *45

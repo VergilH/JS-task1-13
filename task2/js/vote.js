@@ -36,20 +36,6 @@ $(document).ready(function(){//分辨生死
 	}
 });
 
-var personAlive = [];
-var killerAlive = [];
-$(function(){//找出存活人数
-	stillAlive = document.getElementsByClassName("alive");
-	for (var i = 0; i < stillAlive.length; i++) {
-		console.log(stillAlive[i].innerHTML);
-		if (stillAlive[i].innerHTML == "水民") {
-			personAlive.push(i);
-		} 
-		else {
-			killerAlive.push(i);
-		}
-	}
-});
 
 //选择目标
 $(".icon").click(function(){
@@ -60,9 +46,6 @@ $("#footerBtn").click(function(){
 	if (typeof(icon) == "undefined") {
 		alert("先选择某人");
 	}
-	else if (killerAlive.length==0 || personAlive.length==killerAlive.length) {
-		window.location.href="result.html";
-	}
 	else {
 		$(".number:eq("+ icon +")").addClass("dead");
 		dead.push(icon);
@@ -70,4 +53,64 @@ $("#footerBtn").click(function(){
 		sessionStorage.Arr = deadPerson;
 		window.location.href="daily.html";
 	}
+	if (sessionStorage.getItem("Arr") != null) {
+		for (var i = 0;i < dead.length; i++) {
+			$(".number:eq("+ dead[i] +")").addClass("dead");
+			$(".number:eq("+ dead[i] +")").removeClass("alive");
+		}
+	}
+	else {
+		alert("nothing");
+	}
+	var aliveNum = [];
+	stillAlive = document.getElementsByClassName("alive");
+	console.log(stillAlive.length);
+	for (var i = 0; i < stillAlive.length; i++) {
+		console.log(stillAlive[i].innerHTML);
+		aliveNum.push(stillAlive[i].innerHTML);
+		console.log(aliveNum);
+		window.survivor = JSON.stringify(aliveNum);
+		sessionStorage.alive = survivor;
+	}
 });
+
+function check(){
+	setTimeout(function(){
+		if (sessionStorage.getItem("Arr") != null) {
+			for (var i = 0;i < dead.length; i++) {
+				$(".number:eq("+ dead[i] +")").addClass("dead");
+				$(".number:eq("+ dead[i] +")").removeClass("alive");
+			}
+		}
+		else {
+			alert("nothing");
+		}
+	},50);
+	setTimeout(function(){
+		stillAlive = document.getElementsByClassName("alive");
+		for (var i = 0; i < stillAlive.length; i++) {
+			console.log(stillAlive[i].innerHTML);
+			if (stillAlive[i].innerHTML == "水民") {
+				personAlive.push(i);
+				window.psAlive = JSON.stringify(personAlive);
+				sessionStorage.alive = psAlive;
+			}
+			else {
+				killerAlive.push(i);
+				window.goKill = JSON.stringify(killerAlive);
+				sessionStorage.ambush = goKill;
+			}
+		}
+	},200);
+};
+
+function jump(){
+	if (killerAlive.length==0 || personAlive.length==killerAlive.length) {
+		alert("game over");
+		window.location.href="result.html";
+	}
+	else {
+		alert("keep play");
+		window.location.href="daily.html";
+	}
+}
