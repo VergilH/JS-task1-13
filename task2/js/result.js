@@ -18,7 +18,7 @@ var j = 0,k = 0,d = 1,n = 0;
 //动态日期
 $(document).ready(function(){
 	for (var i = 0; i < dead.length; i=i+2) {
-		$("#content").append("<content><p class=deepblack></p><p class=frenchgrey>0小时07分</p><br><div class=content-middle><p class=tag></p><br><p class=tag></p></div></content>");
+		$("#content").append("<content><p class=deepblack></p><br><div class=content-middle><p class=tag></p><br><p class=tag></p></div></content>");
 		$("#content").append("<div class=greyborder></div>")
 		$(".kW").text("杀手词汇："+ killerWord );
 		$(".pW").text("水民词汇："+ peopleWord );
