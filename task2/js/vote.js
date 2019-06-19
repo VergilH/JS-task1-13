@@ -40,6 +40,11 @@ $(document).ready(function(){//分辨生死
 //选择目标
 $(".icon").click(function(){
 	window.icon = $('.icon').index(this);
+	if ($(".number:eq("+ icon +")").hasClass("dead")) {
+		alert("该玩家已死亡");
+		window.icon = undefined;
+	}
+	console.log(icon);
 });
 //判断是否选取目标
 $("#footerBtn").click(function(){
