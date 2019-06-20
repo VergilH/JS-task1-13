@@ -44,6 +44,10 @@ $(".icon").click(function(){
 		alert("该玩家已死亡");
 		window.icon = undefined;
 	}
+	if ($(".number:eq("+ icon +")").text()=="杀手"&&dead.length%2==0) {//判断是否杀手选择正确目标
+		alert("杀手不能选择杀手");
+		window.icon = undefined;
+	}
 	console.log(icon);
 });
 //判断是否选取目标
@@ -119,3 +123,13 @@ function jump(){
 		window.location.href="daily.html";
 	}
 }
+$(".shutdown-icon").click(function(){
+	var c = confirm("退出游戏？");
+	if (c == true) {
+		sessionStorage.clear();
+		window.location.href="index.html";
+	} 
+	else {
+		return;
+	}
+});
